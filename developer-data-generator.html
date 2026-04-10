@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random Developer Data Generator</title>
+
+<style>
+body{
+  font-family: Arial;
+  background:#f2f2f2;
+  text-align:center;
+}
+
+form{
+  background:white;
+  padding:20px;
+  width:320px;
+  margin:auto;
+  margin-top:40px;
+  border-radius:12px;
+  box-shadow:0 0 10px gray;
+}
+
+input{
+  width:95%;
+  padding:8px;
+  margin:6px;
+}
+
+button{
+  padding:10px;
+  background:green;
+  color:white;
+  border:none;
+  margin-top:10px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🚀 Random Developer Data Generator</h2>
+
+<form>
+<input id="username" placeholder="Username"><br>
+<input id="password" placeholder="Strong Password"><br>
+<input id="company" placeholder="Company Name"><br>
+<input id="job" placeholder="Job Title"><br>
+<input id="website" placeholder="Website URL"><br>
+<input id="uuid" placeholder="UUID"><br>
+<input id="color" placeholder="Color Code"><br>
+<input id="date" placeholder="Random Date"><br>
+<input id="bio" placeholder="Short Bio"><br>
+
+<button type="button" onclick="fillData()">Generate Data</button>
+</form>
+
+<script>
+function randomItem(arr){
+ return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function randomString(len){
+ const chars="abcdefghijklmnopqrstuvwxyz123456789";
+ let result="";
+ for(let i=0;i<len;i++){
+   result+=chars[Math.floor(Math.random()*chars.length)];
+ }
+ return result;
+}
+
+function randomUUID(){
+ return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
+   const r=Math.random()*16|0,v=c=='x'?r:(r&0x3|0x8);
+   return v.toString(16);
+ });
+}
+
+function fillData(){
+ const companies=["TechNova","CodeCraft","NextGen Labs","PixelSoft","DevHub"];
+ const jobs=["Web Developer","Data Analyst","UI Designer","QA Tester","AI Engineer"];
+ const bios=["Loves coding","Tech enthusiast","Open source fan","Startup lover"];
+
+ document.getElementById("username").value="user_"+randomString(5);
+ document.getElementById("password").value=randomString(10);
+ document.getElementById("company").value=randomItem(companies);
+ document.getElementById("job").value=randomItem(jobs);
+ document.getElementById("website").value="www."+randomString(6)+".com";
+ document.getElementById("uuid").value=randomUUID();
+ document.getElementById("color").value="#"+Math.floor(Math.random()*16777215).toString(16);
+ document.getElementById("date").value=new Date().toLocaleDateString();
+ document.getElementById("bio").value=randomItem(bios);
+}
+</script>
+
+</body>
+</html>
